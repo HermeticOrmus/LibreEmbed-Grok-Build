@@ -15,10 +15,12 @@ Ports from LibreEmbed-Claude-Code must follow Liquid Gold:
 skills/<name>/SKILL.md
 ```
 
-YAML frontmatter: `name`, `description`. Body: when to use, steps, measurable checks.
+YAML frontmatter: `name`, `description`. Body: when to use, steps, measurable checks, worked example, output shape.
 
 ## PR bar
 
-- Honest depth: only count what you melt
-- No "Grok killer" language
-- Link Reality OS in suite footers
+- Honest depth: only count what you melt. Status is `stub` or `melted` in [docs/DEPTH_MATRIX.md](./docs/DEPTH_MATRIX.md).
+- No "Grok killer" language. No Claude plugin/agent/command totals as this repo's inventory.
+- Suite footer on README / QUICK_START / AGENTS.md: Reality OS + sibling Libre*-Grok-Build packs.
+- Canonical skill body is `skills/<name>/SKILL.md`. Keep `.grok/skills/<name>/SKILL.md` identical.
+- No secrets in skills, templates, or examples. No invented clock trees or sample rates.
