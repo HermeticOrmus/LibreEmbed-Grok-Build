@@ -4,11 +4,11 @@ A stub is a thin cue: a name, a one-line job, and five steps. It is a reminder, 
 
 | Stub | Job | Real depth (pack plugin) | Install |
 |------|-----|--------------------------|---------|
-| [comm-bus-drivers](./comm-bus-drivers/SKILL.md) | I2C/SPI/UART/CAN review cue | [`communication-buses`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/communication-buses) | `grok plugin install communication-buses@libre-embed-grok` |
-| [memory-static-alloc](./memory-static-alloc/SKILL.md) | Static pools, stack and heap cue | [`memory-management`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/memory-management) | `grok plugin install memory-management@libre-embed-grok` |
-| [power-budget](./power-budget/SKILL.md) | Sleep, wake, energy cue | [`power-management`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/power-management) | `grok plugin install power-management@libre-embed-grok` |
-| [iot-protocol-pick](./iot-protocol-pick/SKILL.md) | MQTT/CoAP/BLE/LoRaWAN pick cue | [`iot-protocols`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/iot-protocols) | `grok plugin install iot-protocols@libre-embed-grok` |
-| [embedded-test-hil](./embedded-test-hil/SKILL.md) | On-target and HIL cue | [`embedded-testing`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/embedded-testing) | `grok plugin install embedded-testing@libre-embed-grok` |
+| [comm-bus-drivers](./comm-bus-drivers/SKILL.md) | I2C/SPI/UART/CAN review cue | [`communication-buses`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/communication-buses) | `grok plugin install communication-buses@libre-embed-grok --trust` |
+| [memory-static-alloc](./memory-static-alloc/SKILL.md) | Static pools, stack and heap cue | [`memory-management`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/memory-management) | `grok plugin install memory-management@libre-embed-grok --trust` |
+| [power-budget](./power-budget/SKILL.md) | Sleep, wake, energy cue | [`power-management`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/power-management) | `grok plugin install power-management@libre-embed-grok --trust` |
+| [iot-protocol-pick](./iot-protocol-pick/SKILL.md) | MQTT/CoAP/BLE/LoRaWAN pick cue | [`iot-protocols`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/iot-protocols) | `grok plugin install iot-protocols@libre-embed-grok --trust` |
+| [embedded-test-hil](./embedded-test-hil/SKILL.md) | On-target and HIL cue | [`embedded-testing`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/embedded-testing) | `grok plugin install embedded-testing@libre-embed-grok --trust` |
 
 Also here: [libreembed-core/](./libreembed-core/), the v0 plugin bundle stub. It had no manifest and installed only a copy of the stub orchestrator. It is kept as the record; [plugins/libre-embed-grok](../plugins/libre-embed-grok/) replaces it.
 

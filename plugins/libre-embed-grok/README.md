@@ -12,7 +12,7 @@ Install:
 
 ```bash
 grok plugin marketplace add HermeticOrmus/LibreEmbed-Grok-Build
-grok plugin install libre-embed-grok@libre-embed-grok
+grok plugin install libre-embed-grok@libre-embed-grok --trust
 ```
 
 The five stub skills are not in this plugin. They live in [stubs/](../../stubs/), and each names the pack plugin that holds the real depth. The same marketplace installs those pack plugins.

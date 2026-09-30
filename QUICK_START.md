@@ -35,22 +35,24 @@ Still stubs: the other five skills + the orchestrator. Honest table: [docs/DEPTH
 
 ```bash
 grok plugin marketplace add HermeticOrmus/LibreEmbed-Grok-Build
-grok plugin install libre-embed-grok@libre-embed-grok
+grok plugin install libre-embed-grok@libre-embed-grok --trust
 grok plugin details libre-embed-grok
 ```
+
+Grok installs a plugin only with `--trust`, because a plugin can run hooks, MCP servers and skills on your machine. Without it, `grok plugin install` stops and asks you to re-run with the flag.
 
 The same marketplace lists every [LibreEmbed-Claude-Code](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code) plugin, pinned to one commit of the pack. Install the ones your board needs by name:
 
 ```bash
-grok plugin install rtos-patterns@libre-embed-grok
-grok plugin install communication-buses@libre-embed-grok
+grok plugin install rtos-patterns@libre-embed-grok --trust
+grok plugin install communication-buses@libre-embed-grok --trust
 ```
 
 Or install every entry:
 
 ```bash
 for p in $(grok plugin list --json --available | jq -r '.[] | select(.marketplace == "libre-embed-grok" and .status == "available") | .name'); do
-  grok plugin install "$p@libre-embed-grok"
+  grok plugin install "$p@libre-embed-grok" --trust
 done
 ```
 

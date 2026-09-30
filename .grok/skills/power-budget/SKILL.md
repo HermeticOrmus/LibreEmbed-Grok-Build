@@ -1,11 +1,11 @@
 ---
 name: power-budget
-description: "Stub, not a playbook. Sleep modes, wake sources, and energy budget for battery devices. Real depth: the power-management plugin, grok plugin install power-management@libre-embed-grok."
+description: "Stub, not a playbook. Sleep modes, wake sources, and energy budget for battery devices. Real depth: the power-management plugin, grok plugin install power-management@libre-embed-grok --trust."
 ---
 
 # Power Budget
 
-Stub, not a playbook. Real depth: the [`power-management`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/power-management) plugin from LibreEmbed-Claude-Code. Install it from this marketplace: `grok plugin install power-management@libre-embed-grok`.
+Stub, not a playbook. Real depth: the [`power-management`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/power-management) plugin from LibreEmbed-Claude-Code. Install it from this marketplace: `grok plugin install power-management@libre-embed-grok --trust`.
 
 Sleep modes, wake sources, and energy budget for battery devices.
 

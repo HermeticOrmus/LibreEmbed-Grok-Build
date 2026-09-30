@@ -1,11 +1,11 @@
 ---
 name: iot-protocol-pick
-description: "Stub, not a playbook. Pick MQTT/CoAP/BLE/LoRaWAN/etc. by constraints, not fashion. Real depth: the iot-protocols plugin, grok plugin install iot-protocols@libre-embed-grok."
+description: "Stub, not a playbook. Pick MQTT/CoAP/BLE/LoRaWAN/etc. by constraints, not fashion. Real depth: the iot-protocols plugin, grok plugin install iot-protocols@libre-embed-grok --trust."
 ---
 
 # Iot Protocol Pick
 
-Stub, not a playbook. Real depth: the [`iot-protocols`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/iot-protocols) plugin from LibreEmbed-Claude-Code. Install it from this marketplace: `grok plugin install iot-protocols@libre-embed-grok`.
+Stub, not a playbook. Real depth: the [`iot-protocols`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/iot-protocols) plugin from LibreEmbed-Claude-Code. Install it from this marketplace: `grok plugin install iot-protocols@libre-embed-grok --trust`.
 
 Pick MQTT/CoAP/BLE/LoRaWAN/etc.
 
