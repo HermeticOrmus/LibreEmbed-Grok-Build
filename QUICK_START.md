@@ -6,43 +6,75 @@ Doctrine first: put [grok-build-reality-os](https://github.com/HermeticOrmus/gro
 
 ## Prerequisites
 
-- `git`
-- Grok Build installed and able to see skills under `.grok/skills/` or `~/.grok/skills/`
+- Grok Build (`grok --version` prints a version)
+- `git` and `jq` for the clone paths and the install-everything loop
 - A board/firmware repo you own or are authorized to flash, **or** this repo as the working tree
 
 ## Layout this file assumes
 
 Verified against this repository (do not invent extra folders):
 
-```
-skills/<name>/SKILL.md          # canonical skill bodies (copy these)
+```text
+plugins/libre-embed-grok/                     # the Grok-native plugin
+plugins/libre-embed-grok/skills/<name>/SKILL.md  # melted skill bodies (copy these for the manual path)
+stubs/<name>/SKILL.md                         # stub cues; not installed
 AGENTS/embed-orchestrator.md
 docs/DEPTH_MATRIX.md
 docs/MELT_RULES.md
-.grok/skills/<name>/SKILL.md    # dogfood copy; must match skills/
-.grok/plugins/libreembed-core/  # plugin stub; not required for first run
+.grok-plugin/marketplace.json                 # the plugin + every pack plugin, pinned
+.grok/skills/<name>/SKILL.md                  # dogfood copy of the plugin skills and stubs
+stubs/libreembed-core/                        # v0 plugin bundle stub, kept as the record
 ```
 
-Melted (usable now): `skills/bare-metal-bringup/SKILL.md`, `skills/rtos-task-design/SKILL.md`, `skills/firmware-ota/SKILL.md`.
+Melted (usable now): `bare-metal-bringup`, `rtos-task-design`, `firmware-ota`, in `plugins/libre-embed-grok/skills/`.
 Still stubs: the other five skills + the orchestrator. Honest table: [docs/DEPTH_MATRIX.md](./docs/DEPTH_MATRIX.md).
 
 ## Install (pick one)
 
-### A. Dogfood this repo (fastest)
+### A. Marketplace (recommended)
+
+```bash
+grok plugin marketplace add HermeticOrmus/LibreEmbed-Grok-Build
+grok plugin install libre-embed-grok@libre-embed-grok
+grok plugin details libre-embed-grok
+```
+
+The same marketplace lists every [LibreEmbed-Claude-Code](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code) plugin, pinned to one commit of the pack. Install the ones your board needs by name:
+
+```bash
+grok plugin install rtos-patterns@libre-embed-grok
+grok plugin install communication-buses@libre-embed-grok
+```
+
+Or install every entry:
+
+```bash
+for p in $(grok plugin list --json --available | jq -r '.[] | select(.marketplace == "libre-embed-grok" and .status == "available") | .name'); do
+  grok plugin install "$p@libre-embed-grok"
+done
+```
+
+`libre-embed-hooks` is format-compatible with Grok, but its behavior inside a Grok session is not verified yet (see [LEDGER.md](./LEDGER.md)). Skip it if you only want skills and agents.
+
+To pick up a new pin later: `grok plugin marketplace update`, then `grok plugin update`.
+
+### B. Dogfood this repo
 
 ```bash
 git clone https://github.com/HermeticOrmus/LibreEmbed-Grok-Build.git
 cd LibreEmbed-Grok-Build
-# Skills are already at .grok/skills/ — open this folder in Grok Build.
+# A copy of the skills and stubs is already at .grok/skills/. Open this folder in Grok Build.
 ```
 
-### B. Install into your firmware project
+### C. Copy into your firmware project
+
+The v0 path, for a project that should carry the skill files itself.
 
 ```bash
 git clone https://github.com/HermeticOrmus/LibreEmbed-Grok-Build.git ~/LibreEmbed-Grok-Build
 cd /path/to/your-firmware-project
 mkdir -p .grok/skills
-cp -R ~/LibreEmbed-Grok-Build/skills/* .grok/skills/
+cp -R ~/LibreEmbed-Grok-Build/plugins/libre-embed-grok/skills/* .grok/skills/
 ```
 
 Confirm the copy landed:
@@ -54,17 +86,21 @@ test -f .grok/skills/firmware-ota/SKILL.md
 ls .grok/skills
 ```
 
-You should see eight skill directories, matching `skills/` in this repo.
+You should see three skill directories, matching `plugins/libre-embed-grok/skills/` in this repo. The stubs are not copied: they are pointers to pack plugins, not skills.
 
-### C. User-global
+### D. User-global copy
 
 ```bash
 git clone https://github.com/HermeticOrmus/LibreEmbed-Grok-Build.git ~/LibreEmbed-Grok-Build
 mkdir -p ~/.grok/skills
-cp -R ~/LibreEmbed-Grok-Build/skills/* ~/.grok/skills/
+cp -R ~/LibreEmbed-Grok-Build/plugins/libre-embed-grok/skills/* ~/.grok/skills/
 ```
 
-Same three `test -f` checks as B, under `~/.grok/skills/`.
+Same three `test -f` checks as C, under `~/.grok/skills/`.
+
+### Upgrading from v0
+
+If you copied `skills/*` into a project or `~/.grok/skills/`, that copy holds all eight folders, stubs included. Remove the five stub folders (`comm-bus-drivers`, `memory-static-alloc`, `power-budget`, `iot-protocol-pick`, `embedded-test-hil`) from the copy, or replace the copy with path A so updates arrive through `grok plugin update`.
 
 ### Optional suite agent (merge, do not replace)
 
@@ -95,7 +131,7 @@ You used melted LibreEmbed depth on Grok — not a Claude paste, not a fake plug
 
 ## Smoke checklist
 
-- [ ] `bare-metal-bringup`, `rtos-task-design`, and `firmware-ota` files exist at the install path you chose
+- [ ] `grok plugin list` shows `libre-embed-grok` (path A), or the three skill files exist at the copy path you chose (C or D)
 - [ ] Grok can see those three skills
 - [ ] One bring-up pass named a first observable and used the map / clock checks (or marked unverified)
 - [ ] One RTOS or OTA pass returned severity-ranked findings and remediations (no invented Hz, no keys)
