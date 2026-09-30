@@ -15,7 +15,7 @@ The Grok edition: the melted skills install as a Grok plugin, and the same marke
 
 ### Changed
 
-- Install is `grok plugin marketplace add HermeticOrmus/LibreEmbed-Grok-Build` then `grok plugin install libre-embed-grok@libre-embed-grok`. The folder copy still works from the new path, `plugins/libre-embed-grok/skills/*`.
+- Install is `grok plugin marketplace add HermeticOrmus/LibreEmbed-Grok-Build` then `grok plugin install libre-embed-grok@libre-embed-grok --trust`. The folder copy still works from the new path, `plugins/libre-embed-grok/skills/*`.
 - Melted skills moved from `skills/` to `plugins/libre-embed-grok/skills/`; the five stubs moved to `stubs/`. The `.grok/skills/` dogfood copy stays and matches both.
 - The v0 bundle stub `.grok/plugins/libreembed-core/` moved to `stubs/libreembed-core/`, marked superseded.
 - README gains the family header, the marketplace install and the real Depth table; QUICK_START, AGENTS.md, DEPTH_MATRIX and MELT_RULES follow the new paths.

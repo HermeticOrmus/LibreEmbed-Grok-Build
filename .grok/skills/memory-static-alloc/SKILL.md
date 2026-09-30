@@ -1,11 +1,11 @@
 ---
 name: memory-static-alloc
-description: "Stub, not a playbook. Static allocation, pools, stack/heap analysis for constrained MCUs. Real depth: the memory-management plugin, grok plugin install memory-management@libre-embed-grok."
+description: "Stub, not a playbook. Static allocation, pools, stack/heap analysis for constrained MCUs. Real depth: the memory-management plugin, grok plugin install memory-management@libre-embed-grok --trust."
 ---
 
 # Memory Static Alloc
 
-Stub, not a playbook. Real depth: the [`memory-management`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/memory-management) plugin from LibreEmbed-Claude-Code. Install it from this marketplace: `grok plugin install memory-management@libre-embed-grok`.
+Stub, not a playbook. Real depth: the [`memory-management`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/memory-management) plugin from LibreEmbed-Claude-Code. Install it from this marketplace: `grok plugin install memory-management@libre-embed-grok --trust`.
 
 Static allocation, pools, stack/heap analysis for constrained MCUs.
 

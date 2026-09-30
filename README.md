@@ -32,14 +32,16 @@ One marketplace brings both layers: the Grok-native plugin melted here, and ever
 
 ```bash
 grok plugin marketplace add HermeticOrmus/LibreEmbed-Grok-Build
-grok plugin install libre-embed-grok@libre-embed-grok
+grok plugin install libre-embed-grok@libre-embed-grok --trust
 ```
+
+Grok installs a plugin only with `--trust`, because a plugin can run hooks, MCP servers and skills on your machine. Read what you trust: each entry's source is linked in [.grok-plugin/marketplace.json](./.grok-plugin/marketplace.json).
 
 Then add the pack plugins your board needs, for example:
 
 ```bash
-grok plugin install rtos-patterns@libre-embed-grok
-grok plugin install firmware-update@libre-embed-grok
+grok plugin install rtos-patterns@libre-embed-grok --trust
+grok plugin install firmware-update@libre-embed-grok --trust
 ```
 
 [QUICK_START.md](./QUICK_START.md) has the loop that installs every entry, the dogfood clone, and the manual copy path. From a clone:

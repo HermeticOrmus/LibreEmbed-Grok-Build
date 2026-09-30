@@ -1,11 +1,11 @@
 ---
 name: embedded-test-hil
-description: "Stub, not a playbook. On-target / HIL test outline, mocks, fixtures, flash-safe loops. Real depth: the embedded-testing plugin, grok plugin install embedded-testing@libre-embed-grok."
+description: "Stub, not a playbook. On-target / HIL test outline, mocks, fixtures, flash-safe loops. Real depth: the embedded-testing plugin, grok plugin install embedded-testing@libre-embed-grok --trust."
 ---
 
 # Embedded Test Hil
 
-Stub, not a playbook. Real depth: the [`embedded-testing`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/embedded-testing) plugin from LibreEmbed-Claude-Code. Install it from this marketplace: `grok plugin install embedded-testing@libre-embed-grok`.
+Stub, not a playbook. Real depth: the [`embedded-testing`](https://github.com/HermeticOrmus/LibreEmbed-Claude-Code/tree/main/plugins/embedded-testing) plugin from LibreEmbed-Claude-Code. Install it from this marketplace: `grok plugin install embedded-testing@libre-embed-grok --trust`.
 
 On-target / HIL test outline — mocks, fixtures, flash-safe loops.
 
