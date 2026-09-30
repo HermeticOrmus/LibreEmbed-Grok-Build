@@ -1,0 +1,11 @@
+{
+  "name": "libre-embed-grok",
+  "version": "1.0.0",
+  "description": "Grok-native LibreEmbed skills: bare-metal bring-up, RTOS task design, and firmware OTA. Each is a checklist with measurable pass and fail, a worked example, and an output shape.",
+  "author": {
+    "name": "Diego Bodart",
+    "url": "https://github.com/HermeticOrmus"
+  },
+  "repository": "https://github.com/HermeticOrmus/LibreEmbed-Grok-Build",
+  "license": "MIT"
+}
