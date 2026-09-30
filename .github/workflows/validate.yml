@@ -1,0 +1,57 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  grok:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install the Grok Build CLI
+        run: |
+          curl -fsSL https://x.ai/cli/install.sh | bash
+          echo "$HOME/.grok/bin" >> "$GITHUB_PATH"
+      - name: Validate the Grok-native plugin
+        run: grok plugin validate plugins/libre-embed-grok
+      - name: The dogfood copy in .grok/skills matches the canonical skills
+        run: |
+          set -euo pipefail
+          n=0
+          for f in plugins/libre-embed-grok/skills/*/SKILL.md stubs/*/SKILL.md; do
+            cmp "$f" ".grok/skills/$(basename "$(dirname "$f")")/SKILL.md"
+            n=$((n + 1))
+          done
+          test "$(find .grok/skills -name SKILL.md | wc -l)" -eq "$n"
+          echo "dogfood copy matches: $n skills"
+      - name: Every install line in the docs names a marketplace entry
+        run: |
+          set -euo pipefail
+          bad=0
+          for n in $(grep -rhoE 'grok plugin install [a-z0-9-]+@libre-embed-grok' --include='*.md' . | awk '{print $4}' | cut -d@ -f1 | sort -u); do
+            jq -e --arg n "$n" 'any(.plugins[]; .name == $n)' .grok-plugin/marketplace.json >/dev/null \
+              || { echo "not in the marketplace: $n"; bad=1; }
+          done
+          exit "$bad"
+      - name: Pinned pack SHAs are reachable and the entries match the pack
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: scripts/pin-pack.sh --check
+      - name: Install every entry into a clean Grok home
+        run: |
+          set -euo pipefail
+          export GROK_HOME="$RUNNER_TEMP/grok-home"
+          mkdir -p "$GROK_HOME"
+          grok plugin marketplace add "$GITHUB_WORKSPACE"
+          mk="$(basename "$GITHUB_WORKSPACE")"
+          for p in $(jq -r '.plugins[].name' .grok-plugin/marketplace.json); do
+            grok plugin install "$p@$mk" --trust
+          done
+          grok plugin list
+          want="$(jq '.plugins | length' .grok-plugin/marketplace.json)"
+          have="$(grok plugin list --json | jq 'length')"
+          echo "installed $have of $want entries"
+          test "$have" -eq "$want"
